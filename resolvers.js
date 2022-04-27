@@ -16,6 +16,11 @@ module.exports = {
                 new: true
             });
             return book;
+        },
+        deleteBook: async (_, args) => {
+            const book = await BookModel.findByIdAndRemove(args._id);
+            if (book) return true;
+            return false;
         }
     }
 }
