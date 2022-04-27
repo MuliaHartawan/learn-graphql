@@ -4,13 +4,19 @@ const {
 const mongoose = require('mongoose');
 const typeDefs = require('./schema');
 const resolvers = require('./resolvers');
+const {
+    ApolloServerPluginLandingPageGraphQLPlayground
+} = require('apollo-server-core');
 
 //connection to mongodb
 mongoose.connect('mongodb://localhost:27017/learn-graphql');
 
 const server = new ApolloServer({
     typeDefs,
-    resolvers
+    resolvers,
+    plugins: [
+        ApolloServerPluginLandingPageGraphQLPlayground
+    ]
 });
 
 server.listen()
